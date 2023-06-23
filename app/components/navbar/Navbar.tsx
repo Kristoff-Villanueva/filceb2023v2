@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BiMenu } from "react-icons/bi";
+import navbar from "./navbar.json";
 
 export default function Navabar() {
 	const [navbarOpen, setNavbarOpen] = useState(false);
@@ -42,21 +43,11 @@ export default function Navabar() {
 			</div>
 			{navbarOpen && (
 				<div className="menu flex flex-col gap-4 items-end absolute p-3 right-0 w-full bg-gradient-to-r from-[rgba(255,255,255,0.3)] to-white">
-					<Link href="/about" className="text-xl">
-						ABOUT US
-					</Link>
-					<Link href="/membership" className="text-xl">
-						OUR IMPACT
-					</Link>
-					<Link href="/events" className="text-xl">
-						PARTNER WITH US
-					</Link>
-					<Link href="/resources" className="text-xl">
-						LEARNING AREA
-					</Link>
-					<Link href="/contact" className="text-xl">
-						LOGIN
-					</Link>
+					{navbar.map((item) => (
+						<Link href={item.link} key={item.id} className="text-xl">
+							{item.name}
+						</Link>
+					))}
 				</div>
 			)}
 		</div>
