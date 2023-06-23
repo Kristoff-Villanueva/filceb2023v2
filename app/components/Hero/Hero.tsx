@@ -13,8 +13,13 @@ export default function Hero() {
 					The home for MSME leaders looking for mentorship, connections,
 					collaborative opportunities and leadership mastery.
 				</p>
-				<div className="pb-5">
-					<Link href="/membership">BECOME A MEMBER</Link>
+				<div className="pb-5 mt-3">
+					<Link
+						href="/membership"
+						className="bg-filCebColor text-black px-1 py-2 rounded-md"
+					>
+						BECOME A MEMBER
+					</Link>
 				</div>
 			</div>
 			<div className="supportingText bg-filCebBg text-white p-5">
