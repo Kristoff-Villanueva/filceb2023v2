@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Marquee from "react-fast-marquee";
 import Image from "next/image";
 
 export default function Hero() {
@@ -9,10 +8,7 @@ export default function Hero() {
 				<h1 className="pt-32 text-3xl text-shadow1">
 					Leaders building leaders.
 				</h1>
-				<p className="text-shadow1">
-					The home for MSME leaders looking for mentorship, connections,
-					collaborative opportunities and leadership mastery.
-				</p>
+				<p className="text-shadow1">The home of MSME Leaders in Cebu</p>
 				<div className="pb-5 mt-3">
 					<Link
 						href="/membership"
@@ -33,20 +29,31 @@ export default function Hero() {
 					shared, and learning is mutual.
 				</p>
 			</div>
+			<div className="marquee ">
+				{[...Array(5)].map((_, i) => (
+					<div className="lg:hidden" key={i}>
+						<Image
+							src={`/hero/marquee/${i + 1}.png`}
+							width={200}
+							height={200}
+							alt="FilCeb Photos"
+							key={i + 1}
+						/>
+					</div>
+				))}
+			</div>
 			<div className="marquee">
-				<Marquee>
-					{[...Array(10)].map((_, i) => (
-						<div className="marqueeItem grayscale" key={i}>
-							<Image
-								src={`/hero/marquee/${i + 1}.png`}
-								width={200}
-								height={200}
-								alt="FilCeb Photos"
-								key={i + 1}
-							/>
-						</div>
-					))}
-				</Marquee>
+				{[...Array(10)].map((_, i) => (
+					<div className="hidden lg:block" key={i}>
+						<Image
+							src={`/hero/marquee/${i + 1}.png`}
+							width={200}
+							height={200}
+							alt="FilCeb Photos"
+							key={i + 1}
+						/>
+					</div>
+				))}
 			</div>
 		</div>
 	);
