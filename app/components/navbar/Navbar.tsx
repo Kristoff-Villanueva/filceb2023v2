@@ -14,8 +14,8 @@ export default function Navabar() {
 	};
 
 	return (
-		<div>
-			<div className="flex items-center m-3 relative">
+		<>
+			<div className="flex items-center m-3 relative md:mx-7">
 				<div className="flex items-center">
 					<Image
 						src="/navbar/filcebLogo.png"
@@ -25,12 +25,21 @@ export default function Navabar() {
 					/>
 					<p className="text-filCebColor text-6xl">|</p>
 					<div className="text-xl">
-						<p>FilCeb</p>
-						<p>Business</p>
-						<p>Club</p>
+						<p className="md:text-4xl">
+							FilCeb <br className="md:hidden" />
+							Business <br className="md:hidden" />
+							Club
+						</p>
 					</div>
 				</div>
 				<div className="flex ms-auto items-center gap-4">
+					<div className="hidden gap-9">
+						{navbar.map((item) => (
+							<Link href={item.link} key={item.id} className="text-xl">
+								{item.name}
+							</Link>
+						))}
+					</div>
 					<div className="bg-filCebColor py-2 px-3 rounded-md">
 						<Link href="/about" className="text-xl">
 							JOIN
@@ -50,6 +59,6 @@ export default function Navabar() {
 					))}
 				</div>
 			)}
-		</div>
+		</>
 	);
 }

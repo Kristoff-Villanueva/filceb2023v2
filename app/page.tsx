@@ -8,11 +8,9 @@ import Companies from "./components/Companies/Companies";
 export default function Home() {
 	return (
 		<main className="">
-			<Navbar />
 			<Hero />
 			<Benefits />
 			<Companies />
-			<Footer />
 		</main>
 	);
 }
