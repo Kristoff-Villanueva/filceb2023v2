@@ -1,6 +1,5 @@
 "use client";
 
-import { type } from "os";
 import { useEffect, useState } from "react";
 import Select from "react-select";
 
@@ -34,19 +33,6 @@ export default function Membership() {
 			})
 			.catch((err) => console.log(err));
 	}, []);
-
-	const customStyles = {
-		control: (provided, state) => ({
-			...provided,
-			borderColor: state.isFocused ? "RGB(251, 236, 26)" : provided.borderColor,
-			boxShadow: state.isFocused ? 0 : 0,
-			"&:hover": {
-				borderColor: state.isFocused
-					? "RGB(251, 236, 26)"
-					: provided.borderColor,
-			},
-		}),
-	};
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		console.log(e.target.value);
@@ -159,15 +145,14 @@ export default function Membership() {
 				<label htmlFor="province" className="block mb-2">
 					Province<span className="text-red-400">*</span>
 				</label>
-				<Select
+				{/* <Select
 					name="province"
 					options={provincesList}
 					onChange={handleSelectChange}
 					defaultValue={provincesList[0]}
 					id="province"
-					styles={customStyles}
 					className="mt-1 mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-filCebColor focus:ring focus:ring-filCebColor focus:ring-opacity-50"
-				/>
+				/> */}
 				<hr className="mb-5" />
 				<h2 className="text-lg mb-2">About Your Business</h2>
 				<label htmlFor="businessName" className="block mb-2">
@@ -177,6 +162,18 @@ export default function Membership() {
 					name="businessName"
 					onChange={handleChange}
 					id="businessName"
+					type="text"
+					placeholder="Type your business name here"
+					autoComplete="off"
+					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
+				/>
+				<label htmlFor="businessPosition" className="block mb-2">
+					Position<span className="text-red-400">*</span>
+				</label>
+				<input
+					name="businessPosition"
+					onChange={handleChange}
+					id="businessPosition"
 					type="text"
 					placeholder="Type your business name here"
 					autoComplete="off"
@@ -197,13 +194,12 @@ export default function Membership() {
 				<label htmlFor="businessProvince" className="block mb-2">
 					Province<span className="text-red-400">*</span>
 				</label>
-				<Select
+				{/* <Select
 					name="businessProvince"
 					options={provincesList}
 					onChange={handleSelectChange}
 					defaultValue={provincesList[0]}
 					id="businessProvince"
-					styles={customStyles}
 					className="mt-1 mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-filCebColor focus:ring focus:ring-filCebColor focus:ring-opacity-50"
 				/>
 				<label htmlFor="businessType" className="block mb-2">
@@ -215,42 +211,41 @@ export default function Membership() {
 					onChange={handleSelectChange}
 					defaultValue={businessTypes[0]}
 					id="businessType"
-					styles={customStyles}
 					className="mt-1 mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-filCebColor focus:ring focus:ring-filCebColor focus:ring-opacity-50"
-				/>
+				/> */}
 				<hr className="mb-5" />
 				<h2 className="text-lg ">Proof of Identity</h2>
 				<p className="text-sm mb-5">Submit 2 proofs of identity</p>
-				<label htmlFor="fileUpload" className="block mb-2">
+				<label htmlFor="permitsUpload" className="block mb-2">
 					DTI/SEC/BIR Registration/Business Permit/Cooperative Certification
 					<span className="text-red-400">*</span>
 				</label>
 				<input
 					type="file"
-					id="fileUpload"
+					id="permitsUpload"
 					onChange={handleFileChange}
 					accept=".jpg,.png,.jpeg"
 					className="hidden"
 				/>
 				<label
-					htmlFor="fileUpload"
+					htmlFor="permitsUpload"
 					className="px-4 py-2 mb-5 bg-blue-500 text-white rounded cursor-pointer inline-block"
 				>
 					Choose File
 				</label>
-				<label htmlFor="fileUpload" className="block mb-2">
-					Valid ID (Passport, Driver's License, SSS, GSIS, PRC, etc.)
+				<label htmlFor="idUpload" className="block mb-2">
+					Valid ID (Passport, Driver&apos;s License, SSS, GSIS, PRC, etc.)
 					<span className="text-red-400">*</span>
 				</label>
 				<input
 					type="file"
-					id="fileUpload"
+					id="idUpload"
 					onChange={handleFileChange}
 					accept=".jpg,.png,.jpeg"
 					className="hidden"
 				/>
 				<label
-					htmlFor="fileUpload"
+					htmlFor="idUpload"
 					className="px-4 py-2 mb-10 bg-blue-500 text-white rounded cursor-pointer inline-block"
 				>
 					Choose File
