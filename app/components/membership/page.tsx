@@ -251,7 +251,7 @@ export default function Membership() {
 					Choose File
 				</label>
 				<label htmlFor="idUpload" className="block mb-2">
-					Valid ID (Passport, Driver's License, SSS, GSIS, PRC, etc.)
+					Valid ID (Passport, Driver&apos;s License, SSS, GSIS, PRC, etc.)
 					<span className="text-red-400">*</span>
 				</label>
 				<input
