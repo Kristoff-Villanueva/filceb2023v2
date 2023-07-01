@@ -11,6 +11,9 @@ module.exports = {
 				filCebColor: "#F7EF2B",
 				filCebBg: "#262726",
 			},
+			fontFamily: {
+				karla: ["Karla", "sans-serif"],
+			},
 		},
 	},
 	plugins: [],
