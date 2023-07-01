@@ -182,6 +182,18 @@ export default function Membership() {
 					autoComplete="off"
 					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
 				/>
+				<label htmlFor="businessPosition" className="block mb-2">
+					Position<span className="text-red-400">*</span>
+				</label>
+				<input
+					name="businessPosition"
+					onChange={handleChange}
+					id="businessPosition"
+					type="text"
+					placeholder="Type your business name here"
+					autoComplete="off"
+					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
+				/>
 				<label htmlFor="businessAddress" className="block mb-2">
 					Business Address (City)<span className="text-red-400">*</span>
 				</label>
@@ -221,36 +233,36 @@ export default function Membership() {
 				<hr className="mb-5" />
 				<h2 className="text-lg ">Proof of Identity</h2>
 				<p className="text-sm mb-5">Submit 2 proofs of identity</p>
-				<label htmlFor="fileUpload" className="block mb-2">
+				<label htmlFor="permitsUpload" className="block mb-2">
 					DTI/SEC/BIR Registration/Business Permit/Cooperative Certification
 					<span className="text-red-400">*</span>
 				</label>
 				<input
 					type="file"
-					id="fileUpload"
+					id="permitsUpload"
 					onChange={handleFileChange}
 					accept=".jpg,.png,.jpeg"
 					className="hidden"
 				/>
 				<label
-					htmlFor="fileUpload"
+					htmlFor="permitsUpload"
 					className="px-4 py-2 mb-5 bg-blue-500 text-white rounded cursor-pointer inline-block"
 				>
 					Choose File
 				</label>
-				<label htmlFor="fileUpload" className="block mb-2">
+				<label htmlFor="idUpload" className="block mb-2">
 					Valid ID (Passport, Driver's License, SSS, GSIS, PRC, etc.)
 					<span className="text-red-400">*</span>
 				</label>
 				<input
 					type="file"
-					id="fileUpload"
+					id="idUpload"
 					onChange={handleFileChange}
 					accept=".jpg,.png,.jpeg"
 					className="hidden"
 				/>
 				<label
-					htmlFor="fileUpload"
+					htmlFor="idUpload"
 					className="px-4 py-2 mb-10 bg-blue-500 text-white rounded cursor-pointer inline-block"
 				>
 					Choose File
