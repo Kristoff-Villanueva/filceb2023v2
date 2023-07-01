@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Hero() {
 	return (
 		<div className="text-center flex flex-col md:h-screen">
-			<div className="heroImage bg-[url(/hero/hero2.png)] bg-cover bg-bottom text-white flex flex-col justify-center items-center md:h-1/2">
+			<div className="heroImage bg-[url(/hero/hero2.png)] bg-cover bg-bottom text-white flex flex-col justify-center items-center md:h-1/2 lg:h-2/3 lg:bg-center">
 				<div className="md:mt-28">
 					<h1 className="font-karla font-bold pt-32 text-3xl text-shadow1 md:text-5xl">
 						Leaders building leaders.

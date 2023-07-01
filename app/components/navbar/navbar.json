@@ -2,26 +2,26 @@
 	{
 		"id": 1,
 		"name": "About Us",
-		"link": "/about"
+		"link": "/"
 	},
 	{
 		"id": 2,
 		"name": "Our Impact",
-		"link": "/impact"
+		"link": "/"
 	},
 	{
 		"id": 3,
 		"name": "Partner With Us",
-		"link": "/partner"
+		"link": "/"
 	},
 	{
 		"id": 4,
 		"name": "Learning Area",
-		"link": "/learning"
+		"link": "/"
 	},
 	{
 		"id": 5,
 		"name": "Login",
-		"link": "/login"
+		"link": "/components/Login"
 	}
 ]

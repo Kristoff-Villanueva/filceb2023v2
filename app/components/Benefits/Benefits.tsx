@@ -9,9 +9,12 @@ export default function Benefits() {
 				Tailored Support to Inspire Growth and Foster Success in Your
 				Enterprise.
 			</p>
-			<div className="md:grid md:grid-cols-2 md:gap-5">
+			<div className="md:grid md:grid-cols-2 md:gap-5 lg:place-items-center">
 				{benefits.map((benefit) => (
-					<div key={benefit.title} className="flex flex-col items-center mb-3">
+					<div
+						key={benefit.title}
+						className="flex flex-col items-center mb-3 w-96"
+					>
 						<Image
 							src={`/benefits/${benefit.photo}`}
 							width={250}
