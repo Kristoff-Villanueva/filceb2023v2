@@ -16,22 +16,24 @@ export default function Navabar() {
 	return (
 		<>
 			<div className="flex items-center m-3 relative md:mx-7">
-				<div className="flex items-center">
-					<Image
-						src="/navbar/filcebLogo.png"
-						width={80}
-						height={80}
-						alt="FilCeb Logo"
-					/>
-					<p className="text-filCebColor text-6xl">|</p>
-					<div className="text-xl">
-						<p className="md:text-4xl">
-							FilCeb <br className="md:hidden" />
-							Business <br className="md:hidden" />
-							Club
-						</p>
+				<Link href="/">
+					<div className="flex items-center">
+						<Image
+							src="/navbar/filcebLogo.png"
+							width={80}
+							height={80}
+							alt="FilCeb Logo"
+						/>
+						<p className="text-filCebColor text-6xl">|</p>
+						<div className="text-xl">
+							<p className="md:text-4xl">
+								FilCeb <br className="md:hidden" />
+								Business <br className="md:hidden" />
+								Club
+							</p>
+						</div>
 					</div>
-				</div>
+				</Link>
 				<div className="flex ms-auto items-center gap-4">
 					<div className="hidden gap-9">
 						{navbar.map((item) => (
@@ -41,7 +43,7 @@ export default function Navabar() {
 						))}
 					</div>
 					<div className="bg-filCebColor py-2 px-3 rounded-md">
-						<Link href="/about" className="text-xl">
+						<Link href="/components/membership" className="text-xl">
 							JOIN
 						</Link>
 					</div>

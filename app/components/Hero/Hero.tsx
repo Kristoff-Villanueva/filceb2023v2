@@ -6,15 +6,15 @@ export default function Hero() {
 		<div className="text-center flex flex-col md:h-screen">
 			<div className="heroImage bg-[url(/hero/hero2.png)] bg-cover bg-bottom text-white flex flex-col justify-center items-center md:h-1/2">
 				<div className="md:mt-28">
-					<h1 className="pt-32 text-3xl text-shadow1 md:text-5xl">
+					<h1 className="font-karla font-bold pt-32 text-3xl text-shadow1 md:text-5xl">
 						Leaders building leaders.
 					</h1>
 					<p className="text-shadow1 md:text-xl">
 						The home of MSME Leaders in Cebu
 					</p>
-					<div className="pb-5 mt-3">
+					<div className="pb-7 mt-3">
 						<Link
-							href="/membership"
+							href="/components/membership"
 							className="bg-filCebColor text-black px-2 py-3 rounded-md md:text-lg"
 						>
 							BECOME A MEMBER
@@ -33,7 +33,7 @@ export default function Hero() {
 					shared, and learning is mutual.
 				</p>
 			</div>
-			<div className="marquee flex-grow">
+			<div className="marquee">
 				{[...Array(5)].map((_, i) => (
 					<div className="lg:hidden" key={i}>
 						<Image
@@ -46,7 +46,7 @@ export default function Hero() {
 					</div>
 				))}
 			</div>
-			<div className="marquee flex-grow">
+			<div className="marquee">
 				{[...Array(10)].map((_, i) => (
 					<div className="hidden lg:block" key={i}>
 						<Image
