@@ -1,8 +1,7 @@
 "use client";
 
-import { type } from "os";
-import { useEffect, useState } from "react";
-import Select from "react-select";
+import { useEffect, useState, CSSProperties } from "react";
+import Select, { ControlProps } from "react-select";
 
 type Province = {
 	code: string;
@@ -36,7 +35,7 @@ export default function Membership() {
 	}, []);
 
 	const customStyles = {
-		control: (provided, state) => ({
+		control: (provided: CSSProperties, state: ControlProps<any, boolean>) => ({
 			...provided,
 			borderColor: state.isFocused ? "RGB(251, 236, 26)" : provided.borderColor,
 			boxShadow: state.isFocused ? 0 : 0,
