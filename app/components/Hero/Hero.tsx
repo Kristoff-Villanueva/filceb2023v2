@@ -25,8 +25,8 @@ export default function Hero() {
 			<div className="supportingText bg-filCebBg text-white p-5 flex flex-col justify-center md:flex-grow">
 				<h2 className="text-xl italic md:text-2xl">#businessGrowthTogether</h2>
 				<p className="pt-2">
-					Based in Cebu, our organization is more than a business club—it's a
-					vibrant platform for collaboration and growth. We unite small to
+					Based in Cebu, our organization is more than a business club—it&apos;s
+					a vibrant platform for collaboration and growth. We unite small to
 					medium enterprises (SMEs), fueling a powerful force for economic
 					development. Our mission is to empower these local businesses by
 					providing resources and fostering an environment where experiences are
