@@ -8,14 +8,52 @@ type Province = {
 	name: string;
 };
 
+interface FormData {
+	firstName: string;
+	lastName: string;
+	email: string;
+	mobileNumber: string;
+	dateOfBirth: string;
+	barangay: string;
+	city: string;
+	province: string;
+	businessName: string;
+	businessAddress: string;
+	businessProvince: string;
+	businessType: string;
+	businessPosition: string;
+	permitsUpload: File | null;
+	idUpload: File | null;
+}
+
 export default function Membership() {
+	const [formData, setFormData] = useState<FormData>({
+		firstName: "",
+		lastName: "",
+		email: "",
+		mobileNumber: "",
+		dateOfBirth: "",
+		barangay: "",
+		city: "",
+		province: "",
+		businessName: "",
+		businessAddress: "",
+		businessProvince: "",
+		businessType: "",
+		businessPosition: "",
+		permitsUpload: null,
+		idUpload: null,
+	});
+
 	const [provinces, setProvinces] = useState<Province[]>([]);
+
 	const provincesList = provinces
 		.sort((a, b) => a.name.localeCompare(b.name))
 		.map((province) => ({
 			label: province.name,
 			value: province.code,
 		}));
+
 	const businessTypes = [
 		{ label: "Sole Proprietorship", value: "SP" },
 		{ label: "Partnership", value: "P" },
@@ -38,12 +76,10 @@ export default function Membership() {
 		console.log(e.target.value);
 	}
 
-	function handleSelectChange(selectedOption: any) {
-		console.log(selectedOption);
-	}
-
-	function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-		console.log(e.target.files);
+	function handleSelectChange(
+		selectedOption: { label: string; value: string } | null
+	) {
+		console.log(selectedOption?.value); // Log the value
 	}
 
 	return (
@@ -79,7 +115,7 @@ export default function Membership() {
 					autoComplete="off"
 					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
 				/>
-				<label htmlFor="lastName" className="block mb-2">
+				<label htmlFor="email" className="block mb-2">
 					Email<span className="text-red-400">*</span>
 				</label>
 				<input
@@ -127,14 +163,12 @@ export default function Membership() {
 					autoComplete="off"
 					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
 				/>
-				<label htmlFor="province" className="block mb-2">
-					Province<span className="text-red-400">*</span>
-				</label>
+
 				<label htmlFor="city" className="block mb-2">
 					Address (City)<span className="text-red-400">*</span>
 				</label>
 				<input
-					name="barangay"
+					name="city"
 					onChange={handleChange}
 					id="city"
 					type="text"
@@ -145,14 +179,13 @@ export default function Membership() {
 				<label htmlFor="province" className="block mb-2">
 					Province<span className="text-red-400">*</span>
 				</label>
-				{/* <Select
+				<Select
 					name="province"
 					options={provincesList}
 					onChange={handleSelectChange}
 					defaultValue={provincesList[0]}
 					id="province"
-					className="mt-1 mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-filCebColor focus:ring focus:ring-filCebColor focus:ring-opacity-50"
-				/> */}
+				/>
 				<hr className="mb-5" />
 				<h2 className="text-lg mb-2">About Your Business</h2>
 				<label htmlFor="businessName" className="block mb-2">
@@ -162,18 +195,6 @@ export default function Membership() {
 					name="businessName"
 					onChange={handleChange}
 					id="businessName"
-					type="text"
-					placeholder="Type your business name here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<label htmlFor="businessPosition" className="block mb-2">
-					Position<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="businessPosition"
-					onChange={handleChange}
-					id="businessPosition"
 					type="text"
 					placeholder="Type your business name here"
 					autoComplete="off"
@@ -191,10 +212,11 @@ export default function Membership() {
 					autoComplete="off"
 					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
 				/>
+
 				<label htmlFor="businessProvince" className="block mb-2">
 					Province<span className="text-red-400">*</span>
 				</label>
-				{/* <Select
+				<Select
 					name="businessProvince"
 					options={provincesList}
 					onChange={handleSelectChange}
@@ -212,7 +234,19 @@ export default function Membership() {
 					defaultValue={businessTypes[0]}
 					id="businessType"
 					className="mt-1 mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-filCebColor focus:ring focus:ring-filCebColor focus:ring-opacity-50"
-				/> */}
+				/>
+				<label htmlFor="businessPosition" className="block mb-2">
+					Your Position in the business<span className="text-red-400">*</span>
+				</label>
+				<input
+					name="businessPosition"
+					onChange={handleChange}
+					id="businessPosition"
+					type="text"
+					placeholder="Type your business name here"
+					autoComplete="off"
+					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
+				/>
 				<hr className="mb-5" />
 				<h2 className="text-lg ">Proof of Identity</h2>
 				<p className="text-sm mb-5">Submit 2 proofs of identity</p>
@@ -223,7 +257,7 @@ export default function Membership() {
 				<input
 					type="file"
 					id="permitsUpload"
-					onChange={handleFileChange}
+					onChange={handleChange}
 					accept=".jpg,.png,.jpeg"
 					className="hidden"
 				/>
@@ -240,7 +274,7 @@ export default function Membership() {
 				<input
 					type="file"
 					id="idUpload"
-					onChange={handleFileChange}
+					onChange={handleChange}
 					accept=".jpg,.png,.jpeg"
 					className="hidden"
 				/>
@@ -250,7 +284,10 @@ export default function Membership() {
 				>
 					Choose File
 				</label>
-				<button className="px-4 py-2 bg-filCebColor w-full rounded cursor-pointer inline-block">
+				<button
+					className="px-4 py-2 bg-filCebColor w-full rounded cursor-pointer inline-block"
+					type="submit"
+				>
 					Submit
 				</button>
 			</div>

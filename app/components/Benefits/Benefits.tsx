@@ -11,10 +11,7 @@ export default function Benefits() {
 			</p>
 			<div className="md:grid md:grid-cols-2 md:gap-5 lg:place-items-center">
 				{benefits.map((benefit) => (
-					<div
-						key={benefit.title}
-						className="flex flex-col items-center mb-3 w-96"
-					>
+					<div key={benefit.title} className="flex flex-col items-center mb-3">
 						<Image
 							src={`/benefits/${benefit.photo}`}
 							width={250}
