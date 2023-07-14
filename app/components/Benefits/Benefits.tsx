@@ -4,14 +4,17 @@ import benefits from "./benefits.json";
 export default function Benefits() {
 	return (
 		<div className="mx-5 text-center p-5 border-2 border-gray-100 shadow-lg rounded-lg md:mx-7 my-5">
-			<h2 className="text-xl md:text-2xl">Why Join Us?</h2>
-			<p className="mb-4">
+			<h2 className="text-3xl font-extrabold md:text-4xl">Why Join Us?</h2>
+			<p className="mb-4 text-slate-500">
 				Tailored Support to Inspire Growth and Foster Success in Your
 				Enterprise.
 			</p>
 			<div className="md:grid md:grid-cols-2 md:gap-5 lg:place-items-center">
 				{benefits.map((benefit) => (
-					<div key={benefit.title} className="flex flex-col items-center mb-3">
+					<div
+						key={benefit.title}
+						className="flex flex-col items-center mb-3 lg:w-96"
+					>
 						<Image
 							src={`/benefits/${benefit.photo}`}
 							width={250}
@@ -20,7 +23,7 @@ export default function Benefits() {
 							className="rounded-lg"
 						/>
 						<h3 className="text-lg font-bold">{benefit.title}</h3>
-						<p className="mb-3">{benefit.description}</p>
+						<p className="mb-3 text-slate-500">{benefit.description}</p>
 					</div>
 				))}
 			</div>
