@@ -9,6 +9,9 @@ export const metadata = {
 	title: "FilCeb | The home of Cebu's MSME leaders.",
 	description:
 		"Filipino Cebuano Business Club Inc (FilCeb) | The home of Cebu's MSME leaders.",
+	icons: {
+		icon: "/favicon.png",
+	},
 };
 
 export default function RootLayout({
