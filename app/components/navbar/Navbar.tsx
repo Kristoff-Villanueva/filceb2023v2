@@ -15,9 +15,9 @@ export default function Navabar() {
 
 	return (
 		<>
-			<div className="flex items-center m-3 relative md:mx-7">
+			<div className="flex items-center m-3 relative md:mx-7 text-slate-700">
 				<Link href="/">
-					<div className="flex items-center">
+					<div className="flex items-center lg:gap-3">
 						<Image
 							src="/navbar/filcebLogo.png"
 							width={80}
@@ -26,7 +26,7 @@ export default function Navabar() {
 						/>
 						<p className="text-filCebColor text-6xl">|</p>
 						<div className="text-xl">
-							<p className="md:text-4xl">
+							<p className="md:text-4xl lg:font-bold">
 								FilCeb <br className="md:hidden" />
 								Business <br className="md:hidden" />
 								Club
