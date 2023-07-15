@@ -3,16 +3,16 @@ import Image from "next/image";
 
 export default function Hero() {
 	return (
-		<div className="text-center flex flex-col md:h-screen">
-			<div className="heroImage bg-[url(/hero/hero2.png)] bg-cover bg-bottom text-white flex flex-col justify-center items-center md:h-1/2 lg:h-2/3 lg:bg-center">
-				<div className="md:mt-28">
-					<h1 className="font-karla font-bold pt-32 text-3xl text-shadow1 md:text-5xl">
+		<div className="text-center flex flex-col">
+			<div className="heroImage bg-cover bg-bottom text-white flex flex-col justify-center items-center md:h-1/2 lg:h-2/3 lg:grid lg:grid-cols-7">
+				<div className="md:mt-28 lg:text-left lg:ms-10 lg:mt-0 lg:text-slate-800 lg:col-span-3">
+					<h1 className="font-karla font-bold pt-32 text-3xl drop-shadow-md md:text-5xl lg:drop-shadow-none lg:pt-0">
 						Leaders building leaders.
 					</h1>
-					<p className="text-shadow1 md:text-xl">
+					<p className="drop-shadow-md md:text-xl lg:drop-shadow-none lg:mt-2">
 						The home of MSME Leaders in Cebu
 					</p>
-					<div className="pb-7 mt-3">
+					<div className="pb-7 mt-3 lg:mt-5">
 						<Link
 							href="/components/membership"
 							className="bg-filCebColor text-black px-2 py-3 rounded-md md:text-lg"
@@ -21,8 +21,17 @@ export default function Hero() {
 						</Link>
 					</div>
 				</div>
+				<div className="hidden lg:flex lg:ms-auto lg:col-span-4 ">
+					<Image
+						src="/hero/hero4.png"
+						width={800}
+						height={800}
+						alt="FilCeb"
+						className="lg:w-full"
+					/>
+				</div>
 			</div>
-			<div className="supportingText bg-filCebBg text-white p-5 flex flex-col justify-center md:flex-grow  lg:py-24">
+			<div className="bg-filCebBg text-white p-5 flex flex-col justify-center md:flex-grow  lg:py-24">
 				<h2 className="text-2xl italic md:text-4xl">#businessGrowthTogether</h2>
 				<p className="pt-2 lg:px-52">
 					Based in Cebu, our organization is more than a business club—it&apos;s
