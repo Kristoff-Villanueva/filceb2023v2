@@ -3,15 +3,16 @@
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap");
 
-.text-shadow1 {
-	text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
-		0px 18px 23px rgba(0, 0, 0, 0.1);
-}
-
-.text-shadow2 {
-	text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
-}
-
 Link {
 	cursor: pointer;
+}
+
+.heroImage {
+	background-image: url("/hero/hero2.png");
+}
+
+@media (min-width: 1024px) {
+	.heroImage {
+		background-image: none;
+	}
 }
