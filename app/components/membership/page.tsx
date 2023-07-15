@@ -72,7 +72,7 @@ export default function Membership() {
 						<br /> Membership
 					</h1>
 					<hr className="mb-5" />
-					<AboutYou />
+					<AboutYou provincesList={provincesList} />
 					<hr className="mb-5" />
 					<AboutYourBusiness />
 					<button

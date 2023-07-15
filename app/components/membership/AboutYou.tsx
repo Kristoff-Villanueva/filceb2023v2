@@ -1,7 +1,11 @@
 import { useFormContext, Controller } from "react-hook-form";
 import Select from "react-select";
 
-export default function AboutYou() {
+type AboutYouProps = {
+	provincesList: { label: string; value: string }[];
+};
+
+const AboutYou: React.FC<AboutYouProps> = ({ provincesList }) => {
 	const { register, control } = useFormContext();
 	return (
 		<div>
@@ -100,4 +104,6 @@ export default function AboutYou() {
 			/>
 		</div>
 	);
-}
+};
+
+export default AboutYou;
