@@ -24,8 +24,8 @@ export default function Hero() {
 				<div className="hidden lg:flex lg:ms-auto lg:col-span-4 ">
 					<Image
 						src="/hero/hero4.png"
-						width={800}
-						height={800}
+						width={1000}
+						height={1000}
 						alt="FilCeb"
 						className="lg:w-full"
 					/>
