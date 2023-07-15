@@ -6,9 +6,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-	title: "FilCeb",
+	title: "FilCeb | The home of Cebu's MSME leaders.",
 	description:
-		"Filipino Cebuano Business Club Inc | The home for MSME leaders.",
+		"Filipino Cebuano Business Club Inc (FilCeb) | The home of Cebu's MSME leaders.",
 };
 
 export default function RootLayout({

@@ -35,9 +35,14 @@ export default function Navabar() {
 					</div>
 				</Link>
 				<div className="flex ms-auto items-center gap-4">
-					<div className="hidden gap-9">
+					<div className="hidden gap-9 lg:flex">
 						{navbar.map((item) => (
-							<Link href={item.link} key={item.id} className="text-xl">
+							<Link
+								href={item.link}
+								key={item.id}
+								onClick={handleClick}
+								className="text-xl"
+							>
 								{item.name}
 							</Link>
 						))}
@@ -47,7 +52,7 @@ export default function Navabar() {
 							JOIN
 						</Link>
 					</div>
-					<div className="text-5xl" onClick={handleClick}>
+					<div className="text-5xl lg:hidden" onClick={handleClick}>
 						<BiMenu />
 					</div>
 				</div>
@@ -59,6 +64,7 @@ export default function Navabar() {
 							href={item.link}
 							key={item.id}
 							className="text-xl hover:bg-white hover:text-filCebColor"
+							onClick={handleClick}
 						>
 							{item.name}
 						</Link>

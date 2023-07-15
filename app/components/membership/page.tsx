@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Select from "react-select";
+
+import { useForm, Controller, FormProvider } from "react-hook-form";
+import AboutYou from "./AboutYou";
+import AboutYourBusiness from "./AboutYourBusiness";
 
 type Province = {
 	code: string;
 	name: string;
 };
-
 interface FormData {
 	firstName: string;
 	lastName: string;
@@ -27,24 +29,7 @@ interface FormData {
 }
 
 export default function Membership() {
-	const [formData, setFormData] = useState<FormData>({
-		firstName: "",
-		lastName: "",
-		email: "",
-		mobileNumber: "",
-		dateOfBirth: "",
-		barangay: "",
-		city: "",
-		province: "",
-		businessName: "",
-		businessAddress: "",
-		businessProvince: "",
-		businessType: "",
-		businessPosition: "",
-		permitsUpload: null,
-		idUpload: null,
-	});
-
+	const { register, handleSubmit, control } = useForm<FormData>();
 	const [provinces, setProvinces] = useState<Province[]>([]);
 
 	const provincesList = provinces
@@ -72,225 +57,32 @@ export default function Membership() {
 			.catch((err) => console.log(err));
 	}, []);
 
-	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-		console.log(e.target.value);
-	}
+	const onSubmit = (data: FormData) => {
+		console.log(data);
+	};
 
-	function handleSelectChange(
-		selectedOption: { label: string; value: string } | null
-	) {
-		console.log(selectedOption?.value); // Log the value
-	}
+	const methods = useForm<FormData>();
 
 	return (
-		<div className="m-5">
-			<div className="border border-gray-300 shadow-lg rounded-lg p-6 mx-auto w-full max-w-md">
-				<h1 className="text-2xl text-center mb-5">
-					<span className="font-bold">FilCeb Business Club, Inc </span>
-					<br /> Membership
-				</h1>
-				<hr className="mb-5" />
-				<h2 className="text-lg mb-2">About You</h2>
-				<label htmlFor="firstName" className="block mb-2">
-					First Name<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="firstName"
-					onChange={handleChange}
-					id="firstName"
-					type="text"
-					placeholder="Type your first name here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<label htmlFor="lastName" className="block mb-2">
-					Last Name<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="lastName"
-					onChange={handleChange}
-					id="lastName"
-					type="text"
-					placeholder="Type your last name here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<label htmlFor="email" className="block mb-2">
-					Email<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="email"
-					onChange={handleChange}
-					id="email"
-					type="email"
-					placeholder="Type your email here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<label htmlFor="mobileNumber" className="block mb-2">
-					Mobile Number<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="mobileNumber"
-					onChange={handleChange}
-					id="mobileNumber"
-					type="tel"
-					placeholder="Type your mobile number here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<label htmlFor="dateOfBirth" className="block mb-2">
-					Date of Birth<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="dateOfBirth"
-					onChange={handleChange}
-					id="dateOfBirth"
-					type="date"
-					placeholder="Select your date of birth"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<label htmlFor="barangay" className="block mb-2">
-					Address (Barangay)<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="barangay"
-					onChange={handleChange}
-					id="barangay"
-					type="text"
-					placeholder="Type your business name here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-
-				<label htmlFor="city" className="block mb-2">
-					Address (City)<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="city"
-					onChange={handleChange}
-					id="city"
-					type="text"
-					placeholder="Type your business name here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<label htmlFor="province" className="block mb-2">
-					Province<span className="text-red-400">*</span>
-				</label>
-				<Select
-					name="province"
-					options={provincesList}
-					onChange={handleSelectChange}
-					defaultValue={provincesList[0]}
-					id="province"
-				/>
-				<hr className="mb-5" />
-				<h2 className="text-lg mb-2">About Your Business</h2>
-				<label htmlFor="businessName" className="block mb-2">
-					Business Name<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="businessName"
-					onChange={handleChange}
-					id="businessName"
-					type="text"
-					placeholder="Type your business name here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<label htmlFor="businessAddress" className="block mb-2">
-					Business Address (City)<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="businessAddress"
-					onChange={handleChange}
-					id="businessAddress"
-					type="text"
-					placeholder="Type your business name here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-
-				<label htmlFor="businessProvince" className="block mb-2">
-					Province<span className="text-red-400">*</span>
-				</label>
-				<Select
-					name="businessProvince"
-					options={provincesList}
-					onChange={handleSelectChange}
-					defaultValue={provincesList[0]}
-					id="businessProvince"
-					className="mt-1 mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-filCebColor focus:ring focus:ring-filCebColor focus:ring-opacity-50"
-				/>
-				<label htmlFor="businessType" className="block mb-2">
-					Business Type<span className="text-red-400">*</span>
-				</label>
-				<Select
-					name="businessType"
-					options={businessTypes}
-					onChange={handleSelectChange}
-					defaultValue={businessTypes[0]}
-					id="businessType"
-					className="mt-1 mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-filCebColor focus:ring focus:ring-filCebColor focus:ring-opacity-50"
-				/>
-				<label htmlFor="businessPosition" className="block mb-2">
-					Your Position in the business<span className="text-red-400">*</span>
-				</label>
-				<input
-					name="businessPosition"
-					onChange={handleChange}
-					id="businessPosition"
-					type="text"
-					placeholder="Type your business name here"
-					autoComplete="off"
-					className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
-				/>
-				<hr className="mb-5" />
-				<h2 className="text-lg ">Proof of Identity</h2>
-				<p className="text-sm mb-5">Submit 2 proofs of identity</p>
-				<label htmlFor="permitsUpload" className="block mb-2">
-					DTI/SEC/BIR Registration/Business Permit/Cooperative Certification
-					<span className="text-red-400">*</span>
-				</label>
-				<input
-					type="file"
-					id="permitsUpload"
-					onChange={handleChange}
-					accept=".jpg,.png,.jpeg"
-					className="hidden"
-				/>
-				<label
-					htmlFor="permitsUpload"
-					className="px-4 py-2 mb-5 bg-blue-500 text-white rounded cursor-pointer inline-block"
-				>
-					Choose File
-				</label>
-				<label htmlFor="idUpload" className="block mb-2">
-					Valid ID (Passport, Driver&apos;s License, SSS, GSIS, PRC, etc.)
-					<span className="text-red-400">*</span>
-				</label>
-				<input
-					type="file"
-					id="idUpload"
-					onChange={handleChange}
-					accept=".jpg,.png,.jpeg"
-					className="hidden"
-				/>
-				<label
-					htmlFor="idUpload"
-					className="px-4 py-2 mb-10 bg-blue-500 text-white rounded cursor-pointer inline-block"
-				>
-					Choose File
-				</label>
-				<button
-					className="px-4 py-2 bg-filCebColor w-full rounded cursor-pointer inline-block"
-					type="submit"
-				>
-					Submit
-				</button>
+		<FormProvider {...methods}>
+			<div className="m-5">
+				<div className="border border-gray-300 shadow-lg rounded-lg p-6 mx-auto w-full max-w-md">
+					<h1 className="text-2xl text-center mb-5">
+						<span className="font-bold">FilCeb Business Club, Inc </span>
+						<br /> Membership
+					</h1>
+					<hr className="mb-5" />
+					<AboutYou provincesList={provincesList} />
+					<hr className="mb-5" />
+					<AboutYourBusiness />
+					<button
+						className="px-4 py-2 bg-filCebColor w-full rounded cursor-pointer inline-block"
+						type="submit"
+					>
+						Submit
+					</button>
+				</div>
 			</div>
-		</div>
+		</FormProvider>
 	);
 }

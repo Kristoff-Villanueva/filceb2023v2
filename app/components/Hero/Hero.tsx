@@ -22,9 +22,9 @@ export default function Hero() {
 					</div>
 				</div>
 			</div>
-			<div className="supportingText bg-filCebBg text-white p-5 flex flex-col justify-center md:flex-grow">
-				<h2 className="text-xl italic md:text-2xl">#businessGrowthTogether</h2>
-				<p className="pt-2">
+			<div className="supportingText bg-filCebBg text-white p-5 flex flex-col justify-center md:flex-grow  lg:py-24">
+				<h2 className="text-2xl italic md:text-4xl">#businessGrowthTogether</h2>
+				<p className="pt-2 lg:px-52">
 					Based in Cebu, our organization is more than a business club—it&apos;s
 					a vibrant platform for collaboration and growth. We unite small to
 					medium enterprises (SMEs), fueling a powerful force for economic
@@ -46,8 +46,8 @@ export default function Hero() {
 					</div>
 				))}
 			</div>
-			<div className="marquee">
-				{[...Array(10)].map((_, i) => (
+			<div className="marquee flex justify-center">
+				{[...Array(13)].map((_, i) => (
 					<div className="hidden lg:block" key={i}>
 						<Image
 							src={`/hero/marquee/${i + 1}.png`}
