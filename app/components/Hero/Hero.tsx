@@ -4,7 +4,6 @@ import Image from "next/image";
 export default function Hero() {
 	return (
 		<div className="text-center flex flex-col">
-			<hr className="shadow-lg" />
 			<div className="heroImage bg-cover bg-bottom text-white flex flex-col justify-center items-center md:h-1/2 lg:h-2/3 lg:grid lg:grid-cols-7">
 				<div className="md:mt-28 lg:text-left lg:ms-10 lg:mt-0 lg:text-slate-800 lg:col-span-3">
 					<h1 className="font-karla font-bold pt-32 text-3xl drop-shadow-md md:text-5xl lg:drop-shadow-none lg:pt-0 lg:text-6xl">

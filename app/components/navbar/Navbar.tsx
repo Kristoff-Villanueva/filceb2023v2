@@ -57,13 +57,14 @@ export default function Navabar() {
 					</div>
 				</div>
 			</div>
+			<hr />
 			{navbarOpen && (
-				<div className="menu flex flex-col gap-4 items-end absolute p-3 right-0 w-full bg-gradient-to-r from-[rgba(255,255,255,0.3)] to-filCebColor">
+				<div className="z-50 menu flex flex-col gap-4 items-end absolute p-3 right-0 w-full bg-gradient-to-r from-[rgba(255,255,255,0.3)] to-filCebColor">
 					{navbar.map((item) => (
 						<Link
 							href={item.link}
 							key={item.id}
-							className="text-xl hover:bg-white hover:text-filCebColor"
+							className="text-xl text-slate-800 font-bold hover:bg-white hover:text-filCebColor"
 							onClick={handleClick}
 						>
 							{item.name}

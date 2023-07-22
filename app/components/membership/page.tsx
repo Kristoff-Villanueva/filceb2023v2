@@ -1,15 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useRef } from "react";
+import { useProvinces } from "./controller";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import AboutYou from "./AboutYou";
 import AboutYourBusiness from "./AboutYourBusiness";
+import ReCAPTCHA from "react-google-recaptcha";
 
-type Province = {
-	code: string;
-	name: string;
-};
 interface FormData {
 	firstName: string;
 	lastName: string;
@@ -26,42 +23,49 @@ interface FormData {
 	businessPosition: string;
 	permitsUpload: File | null;
 	idUpload: File | null;
+	fax: string;
 }
 
 export default function Membership() {
-	const { register, handleSubmit, control } = useForm<FormData>();
-	const [provinces, setProvinces] = useState<Province[]>([]);
+	const methods = useForm<FormData>({ mode: "all" });
+	const [recaptchaSolved, setRecaptchaSolved] = useState(false);
+	const { handleSubmit, formState, reset } = methods;
+	const provincesList = useProvinces();
+	const [formReset, setFormReset] = useState(false);
+	const recaptchaRef = useRef<ReCAPTCHA>(null);
+	const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
-	const provincesList = provinces
-		.sort((a, b) => a.name.localeCompare(b.name))
-		.map((province) => ({
-			label: province.name,
-			value: province.code,
-		}));
-
-	const businessTypes = [
-		{ label: "Sole Proprietorship", value: "SP" },
-		{ label: "Partnership", value: "P" },
-		{ label: "Corporation", value: "C" },
-		{ label: "Cooperative", value: "CO" },
-		{ label: "Others", value: "O" },
-	];
-
-	useEffect(() => {
-		fetch("https://psgc.gitlab.io/api/provinces.json")
-			.then((res) => res.json())
-			.then((data) => {
-				setProvinces(data);
-				console.log(data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
-
-	const onSubmit = (data: FormData) => {
-		console.log(data);
+	const onChange = (value: any) => {
+		setRecaptchaSolved(true);
+		setRecaptchaToken(value);
 	};
 
-	const methods = useForm<FormData>();
+	const defaultValues = {
+		firstName: "",
+		lastName: "",
+		email: "",
+		mobileNumber: "",
+		dateOfBirth: "",
+		barangay: "",
+		city: "",
+		province: "",
+		businessName: "",
+		businessAddress: "",
+		businessProvince: "",
+		businessType: "",
+		businessPosition: "",
+		permitsUpload: null,
+		idUpload: null,
+		fax: "",
+	};
+
+	const onSubmit = (data: FormData) => {
+		const combinedData = { ...data, recaptchaToken };
+		console.log(combinedData);
+		reset(defaultValues);
+		recaptchaRef.current?.reset();
+		setFormReset(true);
+	};
 
 	return (
 		<FormProvider {...methods}>
@@ -72,15 +76,32 @@ export default function Membership() {
 						<br /> Membership
 					</h1>
 					<hr className="mb-5" />
-					<AboutYou provincesList={provincesList} />
-					<hr className="mb-5" />
-					<AboutYourBusiness />
-					<button
-						className="px-4 py-2 bg-filCebColor w-full rounded cursor-pointer inline-block"
-						type="submit"
-					>
-						Submit
-					</button>
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<AboutYou provincesList={provincesList} formReset={formReset} />
+						<hr className="mb-5" />
+						<AboutYourBusiness
+							provincesList={provincesList}
+							formReset={formReset}
+						/>
+						<div className="mb-3">
+							<ReCAPTCHA
+								sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+								onChange={onChange}
+								ref={recaptchaRef}
+							/>
+						</div>
+						<button
+							className={`px-4 py-2 bg-filCebColor w-full rounded cursor-pointer inline-block
+							${
+								!formState.isValid || !recaptchaSolved
+									? "pointer-events-none bg-slate-500 opacity-50"
+									: ""
+							}`}
+							type="submit"
+						>
+							Submit
+						</button>
+					</form>
 				</div>
 			</div>
 		</FormProvider>
