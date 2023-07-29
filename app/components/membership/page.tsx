@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useProvinces } from "./controller";
-import { useForm, Controller, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, Controller } from "react-hook-form";
 import AboutYou from "./AboutYou";
 import AboutYourBusiness from "./AboutYourBusiness";
 import ReCAPTCHA from "react-google-recaptcha";
+import { storage } from "../../api/firebase";
+import { ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
 
 interface FormData {
 	firstName: string;
@@ -34,6 +37,9 @@ export default function Membership() {
 	const [formReset, setFormReset] = useState(false);
 	const recaptchaRef = useRef<ReCAPTCHA>(null);
 	const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+	const [imageUpload, setImageUpload] = useState<File | null>(null);
+
+	const { register, control } = methods;
 
 	const onChange = (value: any) => {
 		setRecaptchaSolved(true);
@@ -59,9 +65,21 @@ export default function Membership() {
 		fax: "",
 	};
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = async (data: FormData) => {
+		if (data.permitsUpload !== null) {
+			const imageRef = ref(storage, `images/${data.permitsUpload.name + v4()}`);
+			uploadBytes(imageRef, data.permitsUpload)
+				.then(() => {
+					alert("image uploaded");
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+
+		console.log("permits Upload", data.permitsUpload);
+
 		const combinedData = { ...data, recaptchaToken };
-		console.log(combinedData);
 		reset(defaultValues);
 		recaptchaRef.current?.reset();
 		setFormReset(true);
@@ -69,7 +87,7 @@ export default function Membership() {
 
 	return (
 		<FormProvider {...methods}>
-			<div className="m-5">
+			<div className="mt-5">
 				<div className="border border-gray-300 shadow-lg rounded-lg p-6 mx-auto w-full max-w-md">
 					<h1 className="text-2xl text-center mb-5">
 						<span className="font-bold">FilCeb Business Club, Inc </span>
@@ -77,8 +95,8 @@ export default function Membership() {
 					</h1>
 					<hr className="mb-5" />
 					<form onSubmit={handleSubmit(onSubmit)}>
-						<AboutYou provincesList={provincesList} formReset={formReset} />
-						<hr className="mb-5" />
+						{/* <AboutYou provincesList={provincesList} formReset={formReset} />
+						<hr className="mb-5" /> */}
 						<AboutYourBusiness
 							provincesList={provincesList}
 							formReset={formReset}

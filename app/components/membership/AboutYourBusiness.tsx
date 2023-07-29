@@ -43,7 +43,7 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 
 	return (
 		<div>
-			<h2 className="text-lg mb-2">About Your Business</h2>
+			{/* <h2 className="text-lg mb-2">About Your Business</h2>
 			<label htmlFor="businessName" className="block mb-2">
 				Business Name<span className="text-red-400">*</span>
 			</label>
@@ -139,8 +139,8 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 				autoComplete="off"
 				className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
 			/>
-			<hr className="mb-5" />
-			<h2 className="text-lg ">Proof of Identity</h2>
+			<hr className="mb-5" /> */}
+			<h2 className="text-lg">Proof of Identity</h2>
 			<p className="text-sm mb-5">Submit 2 proofs of identity</p>
 			<label htmlFor="permitsUpload" className="block mb-2">
 				DTI/SEC/BIR Registration/Business Permit/Cooperative Certification
@@ -155,11 +155,19 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 					<input
 						type="file"
 						id="permitsUpload"
-						accept=".jpg,.png,.jpeg"
+						accept=".jpeg, .jpg,.png,.jpeg"
 						className="hidden"
 						onChange={(e) => {
-							handlePermitsUploadChange(e);
-							onChange(e);
+							const file = e.target.files?.[0];
+							if (file) {
+								const maxAllowedSize = 10 * 1024 * 1024;
+								if (file.size <= maxAllowedSize) {
+									onChange(file);
+									setPermitsUploadFile(file);
+								} else {
+									alert("File too large. Maximum file size is 10MB.");
+								}
+							}
 						}}
 						onBlur={onBlur}
 						name={name}
@@ -178,7 +186,8 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 			{permitsUploadFile && (
 				<span className="ms-2">{permitsUploadFile.name}</span>
 			)}
-			<label htmlFor="idUpload" className="block mb-2">
+
+			{/* <label htmlFor="idUpload" className="block mb-2">
 				Valid ID (Passport, Driver&apos;s License, SSS, GSIS, PRC, etc.)
 				<span className="text-red-400">*</span>
 			</label>
@@ -221,7 +230,7 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 				type="text"
 				autoComplete="off"
 				className="hidden"
-			/>
+			/> */}
 		</div>
 	);
 };
