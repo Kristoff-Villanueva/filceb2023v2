@@ -67,17 +67,46 @@ export default function Membership() {
 
 	const onSubmit = async (data: FormData) => {
 		if (data.permitsUpload !== null) {
-			const imageRef = ref(storage, `images/${data.permitsUpload.name + v4()}`);
-			uploadBytes(imageRef, data.permitsUpload)
+			const originalName = data.permitsUpload.name;
+			const extension = originalName.split(".").pop();
+			const filnameWithoutExtension = originalName.substring(
+				0,
+				originalName.lastIndexOf(".")
+			);
+			const shortUuid = v4().substring(0, 5);
+			const newFileName = `${filnameWithoutExtension}-${shortUuid}.${extension}`;
+
+			if (data.permitsUpload !== null) {
+				const imageRef = ref(storage, `permits/${newFileName}`);
+				uploadBytes(imageRef, data.permitsUpload)
+					.then(() => {
+						console.log("permits uploaded");
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+			}
+		}
+
+		if (data.idUpload !== null) {
+			const originalName = data.idUpload.name;
+			const extension = originalName.split(".").pop();
+			const filnameWithoutExtension = originalName.substring(
+				0,
+				originalName.lastIndexOf(".")
+			);
+			const shortUuid = v4().substring(0, 5);
+			const newFileName = `${filnameWithoutExtension}-${shortUuid}.${extension}`;
+
+			const imageRef = ref(storage, `id/${newFileName}`);
+			uploadBytes(imageRef, data.idUpload)
 				.then(() => {
-					alert("image uploaded");
+					console.log("id uploaded");
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 		}
-
-		console.log("permits Upload", data.permitsUpload);
 
 		const combinedData = { ...data, recaptchaToken };
 		reset(defaultValues);
@@ -95,12 +124,12 @@ export default function Membership() {
 					</h1>
 					<hr className="mb-5" />
 					<form onSubmit={handleSubmit(onSubmit)}>
-						{/* <AboutYou provincesList={provincesList} formReset={formReset} />
-						<hr className="mb-5" /> */}
-						<AboutYourBusiness
+						<AboutYou provincesList={provincesList} formReset={formReset} />
+						<hr className="mb-5" />
+						{/* <AboutYourBusiness
 							provincesList={provincesList}
 							formReset={formReset}
-						/>
+						/> */}
 						<div className="mb-3">
 							<ReCAPTCHA
 								sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}

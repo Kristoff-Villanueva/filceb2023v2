@@ -45,7 +45,7 @@ const AboutYou: React.FC<AboutYouProps> = ({ provincesList, formReset }) => {
 				autoComplete="off"
 				className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
 			/>
-			<label htmlFor="email" className="block mb-2">
+			{/* <label htmlFor="email" className="block mb-2">
 				Email<span className="text-red-400">*</span>
 			</label>
 			<input
@@ -127,7 +127,7 @@ const AboutYou: React.FC<AboutYouProps> = ({ provincesList, formReset }) => {
 						}}
 					/>
 				)}
-			/>
+			/> */}
 		</div>
 	);
 };

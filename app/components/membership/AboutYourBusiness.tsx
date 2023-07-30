@@ -184,10 +184,10 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 				{permitsUploadFile ? "Uploaded" : "Choose File"}
 			</label>
 			{permitsUploadFile && (
-				<span className="ms-2">{permitsUploadFile.name}</span>
+				<span className="ms-2">{permitsUploadFile.name} ✅</span>
 			)}
 
-			{/* <label htmlFor="idUpload" className="block mb-2">
+			<label htmlFor="idUpload" className="block mb-2">
 				Valid ID (Passport, Driver&apos;s License, SSS, GSIS, PRC, etc.)
 				<span className="text-red-400">*</span>
 			</label>
@@ -203,8 +203,16 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 						accept=".jpg,.png,.jpeg"
 						className="hidden"
 						onChange={(e) => {
-							handleIdUploadChange(e);
-							onChange(e);
+							const file = e.target.files?.[0];
+							if (file) {
+								const maxAllowedSize = 10 * 1024 * 1024;
+								if (file.size <= maxAllowedSize) {
+									onChange(file);
+									setIdUploadFile(file);
+								} else {
+									alert("File too large. Maximum file size is 10MB.");
+								}
+							}
 						}}
 						onBlur={onBlur}
 						name={name}
@@ -220,7 +228,7 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 			>
 				{idUploadFile ? "Uploaded" : "Choose File"}
 			</label>
-			{idUploadFile && <span className="ms-2">{idUploadFile.name}</span>}
+			{idUploadFile && <span className="ms-2">{idUploadFile.name} ✅</span>}
 			<label htmlFor="faxNumber" className="hidden">
 				Fax Number
 			</label>
@@ -230,7 +238,7 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 				type="text"
 				autoComplete="off"
 				className="hidden"
-			/> */}
+			/>
 		</div>
 	);
 };
