@@ -6,8 +6,9 @@ import { useForm, FormProvider, Controller } from "react-hook-form";
 import AboutYou from "./AboutYou";
 import AboutYourBusiness from "./AboutYourBusiness";
 import ReCAPTCHA from "react-google-recaptcha";
-import { storage } from "../../api/firebase";
+import { storage, db } from "../../api/firebase";
 import { ref, uploadBytes } from "firebase/storage";
+import { doc, collection, setDoc } from "firebase/firestore";
 import { v4 } from "uuid";
 
 interface FormData {
@@ -66,7 +67,7 @@ export default function Membership() {
 	};
 
 	const onSubmit = async (data: FormData) => {
-		if (data.permitsUpload !== null) {
+		if (data.permitsUpload) {
 			const originalName = data.permitsUpload.name;
 			const extension = originalName.split(".").pop();
 			const filnameWithoutExtension = originalName.substring(
@@ -86,9 +87,11 @@ export default function Membership() {
 						console.log(error);
 					});
 			}
+		} else {
+			console.log("no permits uploaded");
 		}
 
-		if (data.idUpload !== null) {
+		if (data.idUpload) {
 			const originalName = data.idUpload.name;
 			const extension = originalName.split(".").pop();
 			const filnameWithoutExtension = originalName.substring(
@@ -106,7 +109,24 @@ export default function Membership() {
 				.catch((error) => {
 					console.log(error);
 				});
+		} else {
+			console.log("no id uploaded");
 		}
+
+		try {
+			const memberId = `${data.firstName}-${data.businessName}-${v4().slice(
+				0,
+				5
+			)}`;
+			const memberRef = doc(db, "membership applicants", memberId);
+			const { permitsUpload, idUpload, ...restOfData } = data;
+			await setDoc(memberRef, restOfData);
+			console.log("Document written with ID: ", memberId);
+		} catch (e) {
+			console.error("Error adding document: ", e);
+		}
+
+		console.log(data);
 
 		const combinedData = { ...data, recaptchaToken };
 		reset(defaultValues);
@@ -126,10 +146,10 @@ export default function Membership() {
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<AboutYou provincesList={provincesList} formReset={formReset} />
 						<hr className="mb-5" />
-						{/* <AboutYourBusiness
+						<AboutYourBusiness
 							provincesList={provincesList}
 							formReset={formReset}
-						/> */}
+						/>
 						<div className="mb-3">
 							<ReCAPTCHA
 								sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}

@@ -43,7 +43,7 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 
 	return (
 		<div>
-			{/* <h2 className="text-lg mb-2">About Your Business</h2>
+			<h2 className="text-lg mb-2">About Your Business</h2>
 			<label htmlFor="businessName" className="block mb-2">
 				Business Name<span className="text-red-400">*</span>
 			</label>
@@ -139,7 +139,7 @@ const AboutYourBusiness: React.FC<AboutYourBusinessProps> = ({
 				autoComplete="off"
 				className="w-full mb-5 border border-gray-200 rounded h-12 placeholder:gray-400 placeholder:italic px-3 focus:outline-none focus:ring-2 focus:ring-filCebColor focus:border-transparent shadow-sm"
 			/>
-			<hr className="mb-5" /> */}
+			<hr className="mb-5" />
 			<h2 className="text-lg">Proof of Identity</h2>
 			<p className="text-sm mb-5">Submit 2 proofs of identity</p>
 			<label htmlFor="permitsUpload" className="block mb-2">
