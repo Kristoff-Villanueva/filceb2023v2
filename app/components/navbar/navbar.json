@@ -1,0 +1,27 @@
+[
+	{
+		"id": 1,
+		"name": "About Us",
+		"link": "/components/About"
+	},
+	{
+		"id": 2,
+		"name": "Our Impact",
+		"link": "/"
+	},
+	{
+		"id": 3,
+		"name": "Partner With Us",
+		"link": "/"
+	},
+	{
+		"id": 4,
+		"name": "Learning Area",
+		"link": "/"
+	},
+	{
+		"id": 5,
+		"name": "Login",
+		"link": "/components/Login"
+	}
+]
