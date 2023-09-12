@@ -1,9 +1,12 @@
-import { Box, Button, Grid } from "@mui/material";
+import { useEffect } from "react";
+import { Box, Button, Grid, Paper } from "@mui/material";
 import Image from "next/image";
 import { Typography } from "@mui/material";
 import { theme } from "../../styles/theme";
 
 export default function Hero() {
+  const gallery = Array.from({ length: 13 }, (_, index) => index + 1);
+
   return (
     <Box>
       <Box
@@ -12,7 +15,7 @@ export default function Hero() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center center",
-          height: "300px",
+          height: "400px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
@@ -44,7 +47,7 @@ export default function Hero() {
         sx={{
           backgroundColor: theme.palette.secondary.main,
           color: "white",
-          padding: "1.5rem",
+          padding: "2rem",
         }}
       >
         <Typography
@@ -66,6 +69,30 @@ export default function Hero() {
           shared, and learning is mutual.
         </Typography>
       </Box>
+      <Grid container sx={{ display: { xs: "flex", md: "none" } }}>
+        {gallery.slice(0, 3).map((item) => (
+          <Grid item xs={4} lg={1} key={item}>
+            <Image
+              src={`/hero/gallery/${item}.png`}
+              alt="hero"
+              width={300}
+              height={300}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Grid container sx={{ display: { xs: "none", md: "flex" } }}>
+        {gallery.slice(0, 12).map((item) => (
+          <Grid item xs={4} lg={1} key={item}>
+            <Image
+              src={`/hero/gallery/${item}.png`}
+              alt="hero"
+              width={300}
+              height={300}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 }
