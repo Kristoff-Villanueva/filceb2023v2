@@ -6,7 +6,7 @@ import companies from "./companies.json";
 export default function Companies() {
   return (
     <Container>
-      <Divider sx={{ marginY: 2 }} />
+      <Divider sx={{ marginBottom: 5 }} />
       <Paper>
         <Typography variant="h5" sx={{ textAlign: "center", paddingY: 2 }}>
           Our Member Companies
