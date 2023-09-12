@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./styles/theme";
+import Footer from "./components/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <body suppressHydrationWarning={true} className={inter.className}>
           <Navbar />
           {children}
+          <Footer />
         </body>
       </html>
     </ThemeProvider>

@@ -1,11 +1,12 @@
 import Marquee from "react-fast-marquee";
-import { Container, Paper, Typography } from "@mui/material";
+import { Container, Divider, Paper, Typography } from "@mui/material";
 import Image from "next/image";
 import companies from "./companies.json";
 
 export default function Companies() {
   return (
     <Container>
+      <Divider sx={{ marginY: 2 }} />
       <Paper>
         <Typography variant="h5" sx={{ textAlign: "center", paddingY: 2 }}>
           Our Member Companies
