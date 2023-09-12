@@ -1,0 +1,26 @@
+[
+	{
+		"id": 1,
+		"photo": "mentorship.jpg",
+		"title": "Mentorship",
+		"description": "Our mentorship program pairs you with seasoned industry leaders, providing personalized guidance to enhance your entrepreneurial skills and navigate business challenges."
+	},
+	{
+		"id": 2,
+		"photo": "opportunities.jpg",
+		"title": "Colaborrative Opportunities",
+		"description": "Our platform encourages engagement with other businesses, fostering innovation and collective growth through resource pooling and idea exchange."
+	},
+	{
+		"id": 3,
+		"photo": "connections.jpg",
+		"title": "Connections",
+		"description": "We facilitate meaningful interactions within a robust network of professionals and entrepreneurs, opening doors to relationships that can drive your business forward."
+	},
+	{
+		"id": 4,
+		"photo": "experiences.jpg",
+		"title": "Immersive Experiences",
+		"description": "Enrich your business understanding through farm tours, exploration of member businesses, and participatory workshops, facilitating firsthand insights into diverse business operations."
+	}
+]

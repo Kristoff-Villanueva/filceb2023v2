@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { Box, Button, Grid, Paper } from "@mui/material";
 import Image from "next/image";
@@ -38,7 +40,7 @@ export default function Hero() {
           >
             The home for Cebu's mSME leaders.
           </Typography>
-          <Button variant="contained" className="bg-primary mb-5">
+          <Button variant="contained" className="bg-primary mb-5 mt-3">
             Become a member
           </Button>
         </Box>

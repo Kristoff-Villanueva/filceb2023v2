@@ -133,7 +133,6 @@ function ResponsiveAppBar() {
           </Toolbar>
         </Container>
       </AppBar>
-      <Hero />
     </>
   );
 }
