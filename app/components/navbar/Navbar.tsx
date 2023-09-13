@@ -18,9 +18,7 @@ import Image from "next/image";
 import { theme } from "../../styles/theme";
 import { Theme } from "@mui/material/styles";
 import Hero from "../hero/Hero";
-
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import navbarItems from "./navbar.json";
 
 const appBarStyles = (theme: Theme) => ({
   color: "white",
@@ -74,9 +72,9 @@ function ResponsiveAppBar() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                {navbarItems.map((item) => (
+                  <MenuItem key={item.id} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{item.name}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -120,13 +118,13 @@ function ResponsiveAppBar() {
               <MenuIcon />
             </IconButton>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
+              {navbarItems.map((item) => (
                 <Button
-                  key={page}
+                  key={item.id}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, display: "block", color: "white" }}
                 >
-                  {page}
+                  {item.name}
                 </Button>
               ))}
             </Box>
