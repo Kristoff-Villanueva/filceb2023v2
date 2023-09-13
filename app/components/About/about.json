@@ -1,0 +1,41 @@
+{
+	"programs": [
+		{
+			"id": 1,
+			"description": "Welfare program for mutual aid and protection."
+		},
+		{ "id": 2, "description": "Education and training." },
+		{ "id": 3, "description": "Advertisement via social media." },
+		{ "id": 4, "description": "Loan facilitation." },
+		{
+			"id": 5,
+			"description": "Transformation of business by way of business incubation and serves as center for entrepreneurial development."
+		},
+		{
+			"id": 6,
+			"description": "Harnessing organizational capacity and promote issues through advocacy."
+		}
+	],
+	"mission": [
+		{
+			"id": 1,
+			"description": "To help one another in promoting business opportunities among Micro, Small, Medium Entrepreneurs (MSMEs). "
+		},
+		{
+			"id": 2,
+			"description": "To encourage new breed of entrepreneurs who understand that the sole purpose of wealth is not only for wealth's sake but to help other people."
+		},
+		{
+			"id": 3,
+			"description": "To provide every Cebuano entrepreneur a venue to develop, enhance and strengthen its potential and capabilities in helping the Philippine economy."
+		},
+		{
+			"id": 4,
+			"description": "To provide appropriate assistance to Filceb members with reliable support and make exposure to local and international market."
+		},
+		{
+			"id": 5,
+			"description": "To foster strategic alliances with national and local government units/agencies to advance the cause of the MSMEs."
+		}
+	]
+}
